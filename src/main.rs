@@ -2,6 +2,8 @@
 #![no_std]
 #![no_main]
 
+extern crate rlibc;
+
 static HELLO: &[u8] = b"Hello World!";
 
 #[no_mangle]
