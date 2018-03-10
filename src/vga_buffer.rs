@@ -1,5 +1,6 @@
 #[allow(dead_code)]
 
+use core::fmt;
 use volatile::Volatile;
 
 #[derive(Debug, Clone, Copy)]
@@ -54,6 +55,8 @@ pub struct Writer {
 
 impl Writer {
   pub fn print_something() {
+    use core::fmt::Write;
+
     let mut writer = Writer {
       column_position: 0,
       color_code: ColorCode::new(Color::Yellow, Color::Black),
@@ -62,6 +65,7 @@ impl Writer {
 
     writer.write_byte(b'H');
     writer.write_str("ello");
+    write!(writer, "The numbers are {} and {}", 42, 1.0 / 3.0).unwrap()
   }
 
   pub fn write_str(&mut self, s: &str) {
@@ -92,4 +96,13 @@ impl Writer {
   }
 
   pub fn new_line(&mut self) {}
+}
+
+impl fmt::Write for Writer {
+  fn write_str(&mut self, s: &str) -> fmt::Result {
+    for byte in s.bytes() {
+      self.write_byte(byte)
+    }
+    Ok(())
+  }
 }
