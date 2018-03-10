@@ -4,5 +4,8 @@ build:
 run:
 	xargo run --target x86_64-blog_os
 
-emulator:
+image:
+	bootimage --target x86_64-blog_os
+
+emulator: build image
 	qemu-system-x86_64 -drive format=raw,file=bootimage.bin
