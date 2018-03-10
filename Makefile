@@ -1,2 +1,6 @@
 build:
-	cargo rustc -- -Z pre-link-arg=-lSystem
+	xargo build --target x86_64-blog_os
+
+run:
+	xargo run --target x86_64-blog_os
+
