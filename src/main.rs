@@ -1,8 +1,11 @@
 #![feature(lang_items)]
+#![feature(const_fn)]
 #![no_std]
 #![no_main]
 
 extern crate rlibc;
+
+mod vga_buffer;
 
 static HELLO: &[u8] = b"Hello World!";
 
