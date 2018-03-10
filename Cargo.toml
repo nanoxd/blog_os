@@ -4,3 +4,9 @@ version = "0.1.0"
 authors = ["Fernando Paredes <nano@fdp.io>"]
 
 [dependencies]
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+panic = "abort"
