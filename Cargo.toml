@@ -5,6 +5,7 @@ authors = ["Fernando Paredes <nano@fdp.io>"]
 
 [dependencies]
 rlibc = "1.0.0"
+volatile = "0.2.3"
 
 [profile.dev]
 panic = "abort"
