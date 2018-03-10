@@ -7,5 +7,5 @@ run:
 image:
 	bootimage --target x86_64-blog_os
 
-emulator: build image
+emulator: image
 	qemu-system-x86_64 -drive format=raw,file=bootimage.bin
