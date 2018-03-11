@@ -1,14 +1,15 @@
 #[allow(dead_code)]
 
 use core::fmt;
+use spin::Mutex;
 use volatile::Volatile;
 
 lazy_static! {
-pub static ref WRITER: Writer = Writer {
-  column_position: 0,
-  color_code: ColorCode::new(Color::Yellow, Color::Black),
-  buffer: unsafe { &mut *(0xb8000 as *mut Buffer) },
-};
+  pub static ref WRITER: Mutex<Writer> = Mutex::new(Writer {
+    column_position: 0,
+    color_code: ColorCode::new(Color::Yellow, Color::Black),
+    buffer: unsafe { &mut *(0xb8000 as *mut Buffer) },
+  });
 }
 
 #[derive(Debug, Clone, Copy)]
