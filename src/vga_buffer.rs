@@ -12,6 +12,21 @@ lazy_static! {
   });
 }
 
+macro_rules! print {
+  ($($arg:tt)*) => (
+    $crate::vga_buffer::print(format_args!($($arg)*)));
+}
+
+macro_rules! println {
+  ($fmt:expr) => (print!(concat!($fmt, "\n")));
+  ($fmt:expr, $($arg:tt)*) => (print!(concat!($fmt, "\n"), $($arg)*));
+}
+
+pub fn print(args: fmt::Arguments) {
+  use core::fmt::Write;
+  WRITER.lock().write_fmt(args).unwrap();
+}
+
 #[derive(Debug, Clone, Copy)]
 #[repr(u8)]
 pub enum Color {
@@ -63,12 +78,6 @@ pub struct Writer {
 }
 
 impl Writer {
-  pub fn write_str(&mut self, s: &str) {
-    for byte in s.bytes() {
-      self.write_byte(byte)
-    }
-  }
-
   pub fn write_byte(&mut self, byte: u8) {
     match byte {
       b'\n' => self.new_line(),

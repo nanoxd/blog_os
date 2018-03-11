@@ -9,18 +9,12 @@ extern crate rlibc;
 extern crate spin;
 extern crate volatile;
 
+#[macro_use]
 mod vga_buffer;
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
-    use core::fmt::Write;
-    vga_buffer::WRITER.lock().write_str("Hello Again");
-    write!(
-        vga_buffer::WRITER.lock(),
-        ", some numbers: {} {}",
-        42,
-        123.12
-    ).unwrap();
+    println!("Hello World{}", "!");
 
     loop {}
 }
