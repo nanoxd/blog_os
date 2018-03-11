@@ -6,6 +6,7 @@ authors = ["Fernando Paredes <nano@fdp.io>"]
 [dependencies]
 rlibc = "1.0.0"
 volatile = "0.2.3"
+spin = "0.4.6"
 
 [dependencies.lazy_static]
 version = "1.0"
