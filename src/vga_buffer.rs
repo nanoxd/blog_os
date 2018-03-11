@@ -63,20 +63,6 @@ pub struct Writer {
 }
 
 impl Writer {
-  pub fn print_something() {
-    use core::fmt::Write;
-
-    let mut writer = Writer {
-      column_position: 0,
-      color_code: ColorCode::new(Color::Yellow, Color::Black),
-      buffer: unsafe { &mut *(0xb8000 as *mut Buffer) },
-    };
-
-    writer.write_byte(b'H');
-    writer.write_str("ello");
-    write!(writer, "The numbers are {} and {}", 42, 1.0 / 3.0).unwrap()
-  }
-
   pub fn write_str(&mut self, s: &str) {
     for byte in s.bytes() {
       self.write_byte(byte)
