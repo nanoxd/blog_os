@@ -3,6 +3,8 @@
 #![no_std]
 #![no_main]
 
+#[macro_use]
+extern crate lazy_static;
 extern crate rlibc;
 extern crate volatile;
 
